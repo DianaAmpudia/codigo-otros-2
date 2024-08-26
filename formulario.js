@@ -2,6 +2,7 @@ const formulario = document.querySelector("#form")
 
 formulario.onsubmit = function(event) {
 
+  //se coloco el Default que faltaba
   event.preventDefault();
   
   const n = formulario.elements[0]
@@ -30,12 +31,8 @@ if (nombre.length > 0
   }
 }
 
-const botonBorrar = document.createElement("button")
-botonBorrar.textContent = "Eliminar invitado"
-botonBorrar.id = "boton-borrar"
-const corteLinea = document.createElement("br")
-document.body.appendChild(corteLinea)
-document.body.appendChild(botonBorrar);
+//Se eliminaron lineas de codigo que agregaban nuevamente el elemento nombre y el botón borrar
+
 
 function agregarInvitado(nombre, edad, nacionalidad) {
 
@@ -55,17 +52,10 @@ function agregarInvitado(nombre, edad, nacionalidad) {
 const lista = document.getElementById("lista-de-invitados")
 
 const elementoLista = document.createElement("div")
+// se cambio de added a el método correcto que es add
 elementoLista.classList.add("elemento-lista")
 lista.appendChild(elementoLista)
 
-const spanNombre = document.createElement("span")
-const inputNombre = document.createElement("input")
-const espacio = document.createElement("br")
-spanNombre.textContent = "Nombre: "
-inputNombre.value = nombre 
-elementoLista.appendChild(spanNombre)
-elementoLista.appendChild(inputNombre)
-elementoLista.appendChild(espacio)
 
 function crearElemento(descripcion, valor) {
 const spanNombre = document.createElement("span")
@@ -73,22 +63,19 @@ const inputNombre = document.createElement("input")
 const espacio = document.createElement("br")
 spanNombre.textContent = descripcion + ": "
 inputNombre.value = valor 
-elementoLista.appendChild(spanNombre)
-elementoLista.appendChild(inputNombre)
-elementoLista.appendChild(espacio)
+// Se coloca un solo append para no tener tantas líneas de código
+elementoLista.append(spanNombre, inputNombre, espacio)
 }
 
 crearElemento("Nombre", nombre)
 crearElemento("Edad", edad)
 crearElemento("Nacionalidad", nacionalidad)
 
-
 const botonBorrar = document.createElement("button")
 botonBorrar.textContent = "Eliminar invitado"
 botonBorrar.id = "boton-borrar"
 const corteLinea = document.createElement("br")
-elementoLista.appendChild(corteLinea)
-elementoLista.appendChild(botonBorrar);
+elementoLista.append(corteLinea, botonBorrar);
 
  botonBorrar.onclick = function() {
 // this.parentNode.style.display = 'none';
